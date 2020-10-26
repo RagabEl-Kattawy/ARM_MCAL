@@ -6,7 +6,7 @@
  * @version 0.1
  * @date 10-26-2020
  * 
- * @copyright Ragab Elkattawy  (c) 2020
+ * @copyright Ragab Elkattawy (c) 2020
  * 
  */
 

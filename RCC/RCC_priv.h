@@ -1,8 +1,14 @@
-/************************************************************/
-/* AUTHOR      : RAGAB REDA EL-KATTAWY                      */
-/* DESCRIPTION : RCC PRIVATE    [RCC_priv.h]                */
-/* DATE        : AUGUST 17, 2020                            */
-/************************************************************/
+/**
+ * @file RCC_priv.h
+ * @author Ragab R. Elkattawy (r.elkattawy@gmail.com)
+ * @brief Private file that contains Private Parameters
+ * that is used internally in the implementtion. 
+ * @version 0.1
+ * @date 10-26-2020
+ * 
+ * @copyright Ragab Elkattawy (c) 2020
+ * 
+ */
 #ifndef RCC_PRIV_H_
 #define RCC_PRIV_H_
 

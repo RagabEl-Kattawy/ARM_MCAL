@@ -1,8 +1,13 @@
-/************************************************************/
-/* AUTHOR      : RAGAB REDA EL-KATTAWY                      */
-/* DESCRIPTION : RCC INTERFACE    [RCC_int.h]               */
-/* DATE        : AUGUST 17, 2020                            */
-/************************************************************/
+/**
+ * @file RCC_int.h
+ * @author Ragab R. Elkattawy (r.elkattawy@gmail.com)
+ * @brief The interface file (should be included in any file using RCC APIs)
+ * @version 0.1
+ * @date 10-26-2020
+ * 
+ * @copyright Ragab Elkattawy (c) 2020
+ * 
+ */
 #ifndef RCC_INT_H_
 #define RCC_INT_H_
 
@@ -20,101 +25,133 @@
 /* Pll configurations */
 
 /**
- * @brief 
+ * @brief PLL Multiplication factors.
  * 
  */
 typedef enum{
-    /* boundaries */
+    PLL_NONE    = 0x00,     /*!< No Multiplication Factor */
+    PLL_MUL_2   = 0x01,     /*!< x2 Multiplication Factor */
+    PLL_MUL_3   = 0x02,     /*!< x3 Multiplication Factor */
+    PLL_MUL_4   = 0x03,     /*!< x4 Multiplication Factor */
+    PLL_MUL_5   = 0x04,     /*!< x5 Multiplication Factor */
+    PLL_MUL_6   = 0x05,     /*!< x6 Multiplication Factor */
+    PLL_MUL_7   = 0x06,     /*!< x7 Multiplication Factor */
+    PLL_MUL_8   = 0x07,     /*!< x8 Multiplication Factor */
+    PLL_MUL_9   = 0x08,     /*!< x9 Multiplication Factor */
+    PLL_MUL_10  = 0x09,     /*!< x10 Multiplication Factor */
+    PLL_MUL_11  = 0x0A,     /*!< x11 Multiplication Factor */
+    PLL_MUL_12  = 0x0B,     /*!< x12 Multiplication Factor */
+    PLL_MUL_13  = 0x0C,     /*!< x13 Multiplication Factor */
+    PLL_MUL_14  = 0x0D,     /*!< x14 Multiplication Factor */
+    PLL_MUL_15  = 0x0E,     /*!< x15 Multiplication Factor */
+    PLL_MUL_16  = 0x0F      /*!< x16 Multiplication Factor */
+} RCC_PLLMul_t;
+
+/**
+ * @brief system clock used.
+ * 
+ */
+typedef enum {
+    RCC_HSI     = 0x00,     /*!< High speed internal clock */
+    RCC_HSE     = 0xCF,     /*!< High speed external clock */
+    RCC_HSI_2   = 0x9F,     /*!< High speed internal clocc divided by 2 */
+    RCC_HSE_2   = 0xF9,     /*!< High speed external clock divided by 2 */
+    RCC_HSE_PYP = 0xE7,     /*!< High speed external clock bypassed */
+    RCC_HSE_PYP_2 = 0x7E    /*!< High speed external clock bypassed and divided by 2 */
+} RCC_ClkSrc_t;
+
+/**
+ * @brief Clock Security configurations
+ * 
+ */
+typedef enum {
+    RCC_CSS_ON  = 0x01,     /*!< RCC Clock security system ON */
+    RCC_CSS_OFF = 0x00      /*!< RCC Clock security system OFF */
+} RCC_CSS_t;
+
+/**
+ * @brief System configuration Structure
+ * 
+ */
+typedef struct{
+    RCC_PLLMul_t        RCC_PLLMul      ;   /*!< PLL multiplication factor from RCC_PLLMul_t */
+    RCC_ClkSrc_t        RCC_ClockSource ;   /*!< RCC Clock Source from RCC_ClkSrc_t */
+    RCC_CSS_t           RCC_CSS         ;   /*!< RCC_CSS */
+} RCC_SysClkCfg_t;
+
+/**
+ * @brief Internal Busses.
+ * 
+ */
+typedef enum{
+    AHB         = 0x00,     /*!< Advanced High Performance BUS */
+    APB1        = 0xCF,     /*!< Advanced Peripheral Bus 1 (LOW SPEED 36 MHz MAX) */
+    APB2        = 0xFC      /*!< Advanced Peripheral Bus 2 */
+}RCC_Bus_t;
+
+/**
+ * @brief Buses Prescaler
+ * 
+ */
+typedef enum{
+    BUS_AHB_NONE= 0x08,     /*!< AHB Has No prescaler */
+    BUS_APB_NONE= 0x04,     /*!< APBx has no Prescaler */
+    BUS_DIV_2   = 0x00,     /*!< Divide feeding clock by 2 */
+    BUS_DIV_4   = 0x01,     /*!< Divide feeding clock by 4 */
+    BUS_DIV_8   = 0x02,     /*!< Divide feeding clock by 8 */
+    BUS_DIV_16  = 0x03,     /*!< Divide feeding clock by 16 */
+    BUS_DIV_64  = 0x04,     /*!< Divide feeding clock by 64 */
+    BUS_DIV_128 = 0x05,     /*!< Divide feeding clock by 128 */
+    BUS_DIV_256 = 0x06,     /*!< Divide feeding clock by 256 */
+    BUS_DIV_512 = 0x07,     /*!< Divide feeding clock by 512 */
+} RCC_BusPre_t;
+
+/**
+ * @brief Buses Prescaler configuration structure
+ * 
+ */
+typedef struct{
+    RCC_BusPre_t  RCC_AHBPre;    /*!< AHB (prescaler All values Valid) */
+    RCC_BusPre_t  RCC_APB1Pre;   /*!< APB1 prescaler ( only /0, /2, /4, /8, /16) 36 MHz max */
+    RCC_BusPre_t  RCC_APB2Pre;   /*!< APB1 prescaler ( only /0, /2, /4, /8, /16) */
+}RCC_BusConfig_t;
+
+/**
+ * @brief RCC interrupt signals IDs
+ * 
+ */
+typedef enum{
+    RCC_CSS_INT    = 0x07,  /*!< CSS interrupt ID */
+    RCC_PLLRDY_INT = 0x04,  /*!< PLL ready Interrupt ID */
+    RCC_HSERDY_INT = 0x03,  /*!< HSE Ready Interrupt ID */
+    RCC_HSIRDY_INT = 0x02,  /*!< HSI Ready Inperrupt ID */
+    RCC_LSERDY_INT = 0x01,  /*!< LSE Ready Interrupt ID */
+    RCC_LSIRDY_INT = 0x00   /*!< LSI Ready Interrupt ID */
+}RCC_Int_t;
+
+/**
+ * @brief Microcintroller Clock Output (50 MHz MAX)
+ * 
+ */
+typedef enum{
+    RCC_NO_CLK_OUT  = 0x04, /*!< No Clock Output */
+    RCC_SYSCLK_OUT  = 0x00, /*!< Sysytem Clock */
+    RCC_HSI_OUT     = 0x01, /*!< HSI Clock */
+    RCC_HSE_OUT     = 0x02, /*!< HSE Clock */
+    RCC_PLL_DIV2_OUT= 0x03  /*!< PLL clock divided by 2 */
+}RCC_CLKOUT_t;
+
+/**
+ * @brief RCC controlled peripherals
+ * 
+ */
+typedef enum{
     AHB_MIN     = 0x00,
     AHB_MAX     = 0x1F,
     APB2_MIN    = 0X20,
     APB2_MAX    = 0x3F,
     APB1_MIN    = 0x40,
     APB1_MAX    = 0x5F,
-
-    PLL_NONE    = 0x00,
-    PLL_MUL_2   = 0x01,
-    PLL_MUL_3   = 0x02,
-    PLL_MUL_4   = 0x03,
-    PLL_MUL_5   = 0x04,
-    PLL_MUL_6   = 0x05,
-    PLL_MUL_7   = 0x06,
-    PLL_MUL_8   = 0x07,
-    PLL_MUL_9   = 0x08,
-    PLL_MUL_10  = 0x09,
-    PLL_MUL_11  = 0x0A,
-    PLL_MUL_12  = 0x0B,
-    PLL_MUL_13  = 0x0C,
-    PLL_MUL_14  = 0x0D,
-    PLL_MUL_15  = 0x0E,
-    PLL_MUL_16  = 0x0F
-} RCC_PLLMul_t;
-
-/* system clock origin */
-typedef enum {
-    RCC_HSI     = 0x00,
-    RCC_HSE     = 0xCF,
-    RCC_HSI_2   = 0x9F,
-    RCC_HSE_2   = 0xF9,
-    RCC_HSE_PYP = 0xE7,
-    RCC_HSE_PYP_2 = 0x7E
-} RCC_ClkSrc_t;
-
-/* Clock Security configurations */
-typedef enum {
-    RCC_CSS_ON  = 0x01,
-    RCC_CSS_OFF = 0x00
-} RCC_CSS_t;
-
-typedef struct{
-    RCC_PLLMul_t        RCC_PLLMul      ;
-    RCC_ClkSrc_t        RCC_ClockSource ;
-    RCC_CSS_t           RCC_CSS         ;
-} RCC_SysClkCfg_t;
-
-typedef enum{
-    AHB         = 0x00,
-    APB1        = 0xCF,
-    APB2        = 0xFC
-}RCC_Bus_t;
-
-typedef enum{
-    BUS_AHB_NONE= 0x08,
-    BUS_APB_NONE= 0x04,
-    BUS_DIV_2   = 0x00,
-    BUS_DIV_4   = 0x01,
-    BUS_DIV_8   = 0x02,
-    BUS_DIV_16  = 0x03,
-    BUS_DIV_64  = 0x04,
-    BUS_DIV_128 = 0x05,
-    BUS_DIV_256 = 0x06,
-    BUS_DIV_512 = 0x07,
-} RCC_BusPre_t;
-
-typedef struct{
-    RCC_BusPre_t  RCC_AHBPre;
-    RCC_BusPre_t  RCC_APB1Pre;
-    RCC_BusPre_t  RCC_APB2Pre;
-}RCC_BusConfig_t;
-
-typedef enum{
-    RCC_CSS_INT    = 7,
-    RCC_PLLRDY_INT = 4,
-    RCC_HSERDY_INT = 3,
-    RCC_HSIRDY_INT = 2,
-    RCC_LSERDY_INT = 1,
-    RCC_LSIRDY_INT = 0
-}RCC_Int_t;
-
-typedef enum{
-    RCC_NO_CLK_OUT  = 0x04,
-    RCC_SYSCLK_OUT  = 0x00,
-    RCC_HSI_OUT     = 0x01,
-    RCC_HSE_OUT     = 0x02,
-    RCC_PLL_DIV2_OUT= 0x03
-}RCC_CLKOUT_t;
-
-typedef enum{
 /*********************** AHB peripherals ********************/
     RCC_DMA1_IDX        = 0,
     RCC_DMA2_IDX        = 1,

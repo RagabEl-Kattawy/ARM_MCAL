@@ -67,35 +67,39 @@ $(function() {
 <div class="title">RCC_cfg.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/************************************************************/</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* AUTHOR      : RAGAB REDA EL-KATTAWY                      */</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/* DESCRIPTION : RCC CONFIGURATION    [RCC_cfg.h]           */</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/* DATE        : AUGUST 17, 2020                            */</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/************************************************************/</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef RCC_CFG_H_</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define RCC_CFG_H_</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/************************ Includes **************************/</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/* System Clock Configurations */</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* Clock source */</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<a class="code" href="struct_r_c_c___sys_clk_cfg__t.html">RCC_SysClkCfg_t</a> RCC_SysClkCfg</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    PLL_MUL_9, <span class="comment">/* RCC_PLLMul */</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    RCC_HSE, <span class="comment">/* RCC_ClockSource */</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    RCC_CSS_ON <span class="comment">/* RCC_CSS */</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;};</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<a class="code" href="struct_r_c_c___bus_config__t.html">RCC_BusConfig_t</a> RCC_BusConfig</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    BUS_AHB_NONE, <span class="comment">/* RCC_AHBPre */</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    BUS_DIV_2,<span class="comment">/* RCC_APB1Pre Low spped 36MHz Max*/</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    BUS_APB_NONE<span class="comment">/* RCC_APB2Pre */</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* RCC_CFG_H_ */</span><span class="preprocessor"></span></div>
+<a href="_r_c_c__cfg_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef RCC_CFG_H_</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define RCC_CFG_H_</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/************************ Includes **************************/</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/* System Clock Configurations */</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="_r_c_c__cfg_8h.html#adb11eed91a80f0ee0398e2945e816f96">   22</a></span>&#160;<a class="code" href="struct_r_c_c___sys_clk_cfg__t.html">RCC_SysClkCfg_t</a> <a class="code" href="_r_c_c__cfg_8h.html#adb11eed91a80f0ee0398e2945e816f96">RCC_SysClkCfg</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="_r_c_c__int_8h.html#ae9dfc6080a71b046f480d9e6582898bca23c9c25ba0b6a0dc1363eaa510e2eb67">PLL_MUL_9</a>,  </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="_r_c_c__int_8h.html#a77fc488b8db4f6fd112e1f7f5a2436cbaa72a0e027ef7492439824d675d4a2fb4">RCC_HSE</a>,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="_r_c_c__int_8h.html#a17a3eab654d99c1c5020e338e02f79a1a6511ac731b8efad24c717059dff84a00">RCC_CSS_ON</a></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="_r_c_c__cfg_8h.html#a4ea80bebce6139d6bfb8e94352154cf0">   33</a></span>&#160;<a class="code" href="struct_r_c_c___bus_config__t.html">RCC_BusConfig_t</a> <a class="code" href="_r_c_c__cfg_8h.html#a4ea80bebce6139d6bfb8e94352154cf0">RCC_BusConfig</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="_r_c_c__int_8h.html#aef7aca7ad3182ff4e7f8f5fa95e5e486a0d3ea1773a2bd409fc17a6163719464e">BUS_AHB_NONE</a>,</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="_r_c_c__int_8h.html#aef7aca7ad3182ff4e7f8f5fa95e5e486a0f3c185638ecbcc9587c8ec95555b518">BUS_DIV_2</a>,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="_r_c_c__int_8h.html#aef7aca7ad3182ff4e7f8f5fa95e5e486a6f072ae4117b2207cf2230c0ce46e375">BUS_APB_NONE</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* RCC_CFG_H_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astruct_r_c_c___bus_config__t_html"><div class="ttname"><a href="struct_r_c_c___bus_config__t.html">RCC_BusConfig_t</a></div><div class="ttdef"><b>Definition:</b> RCC_int.h:94</div></div>
-<div class="ttc" id="astruct_r_c_c___sys_clk_cfg__t_html"><div class="ttname"><a href="struct_r_c_c___sys_clk_cfg__t.html">RCC_SysClkCfg_t</a></div><div class="ttdef"><b>Definition:</b> RCC_int.h:69</div></div>
+<div class="ttc" id="a_r_c_c__cfg_8h_html_adb11eed91a80f0ee0398e2945e816f96"><div class="ttname"><a href="_r_c_c__cfg_8h.html#adb11eed91a80f0ee0398e2945e816f96">RCC_SysClkCfg</a></div><div class="ttdeci">RCC_SysClkCfg_t RCC_SysClkCfg</div><div class="ttdoc">System configuration Structure.</div><div class="ttdef"><b>Definition:</b> RCC_cfg.h:23</div></div>
+<div class="ttc" id="a_r_c_c__int_8h_html_a17a3eab654d99c1c5020e338e02f79a1a6511ac731b8efad24c717059dff84a00"><div class="ttname"><a href="_r_c_c__int_8h.html#a17a3eab654d99c1c5020e338e02f79a1a6511ac731b8efad24c717059dff84a00">RCC_CSS_ON</a></div><div class="ttdeci">@ RCC_CSS_ON</div><div class="ttdef"><b>Definition:</b> RCC_int.h:68</div></div>
+<div class="ttc" id="astruct_r_c_c___bus_config__t_html"><div class="ttname"><a href="struct_r_c_c___bus_config__t.html">RCC_BusConfig_t</a></div><div class="ttdoc">Buses Prescaler configuration structure.</div><div class="ttdef"><b>Definition:</b> RCC_int.h:113</div></div>
+<div class="ttc" id="a_r_c_c__int_8h_html_aef7aca7ad3182ff4e7f8f5fa95e5e486a6f072ae4117b2207cf2230c0ce46e375"><div class="ttname"><a href="_r_c_c__int_8h.html#aef7aca7ad3182ff4e7f8f5fa95e5e486a6f072ae4117b2207cf2230c0ce46e375">BUS_APB_NONE</a></div><div class="ttdeci">@ BUS_APB_NONE</div><div class="ttdef"><b>Definition:</b> RCC_int.h:98</div></div>
+<div class="ttc" id="astruct_r_c_c___sys_clk_cfg__t_html"><div class="ttname"><a href="struct_r_c_c___sys_clk_cfg__t.html">RCC_SysClkCfg_t</a></div><div class="ttdoc">System configuration Structure.</div><div class="ttdef"><b>Definition:</b> RCC_int.h:76</div></div>
+<div class="ttc" id="a_r_c_c__int_8h_html_aef7aca7ad3182ff4e7f8f5fa95e5e486a0f3c185638ecbcc9587c8ec95555b518"><div class="ttname"><a href="_r_c_c__int_8h.html#aef7aca7ad3182ff4e7f8f5fa95e5e486a0f3c185638ecbcc9587c8ec95555b518">BUS_DIV_2</a></div><div class="ttdeci">@ BUS_DIV_2</div><div class="ttdef"><b>Definition:</b> RCC_int.h:99</div></div>
+<div class="ttc" id="a_r_c_c__int_8h_html_a77fc488b8db4f6fd112e1f7f5a2436cbaa72a0e027ef7492439824d675d4a2fb4"><div class="ttname"><a href="_r_c_c__int_8h.html#a77fc488b8db4f6fd112e1f7f5a2436cbaa72a0e027ef7492439824d675d4a2fb4">RCC_HSE</a></div><div class="ttdeci">@ RCC_HSE</div><div class="ttdef"><b>Definition:</b> RCC_int.h:56</div></div>
+<div class="ttc" id="a_r_c_c__cfg_8h_html_a4ea80bebce6139d6bfb8e94352154cf0"><div class="ttname"><a href="_r_c_c__cfg_8h.html#a4ea80bebce6139d6bfb8e94352154cf0">RCC_BusConfig</a></div><div class="ttdeci">RCC_BusConfig_t RCC_BusConfig</div><div class="ttdoc">Bus prescalers structure.</div><div class="ttdef"><b>Definition:</b> RCC_cfg.h:34</div></div>
+<div class="ttc" id="a_r_c_c__int_8h_html_ae9dfc6080a71b046f480d9e6582898bca23c9c25ba0b6a0dc1363eaa510e2eb67"><div class="ttname"><a href="_r_c_c__int_8h.html#ae9dfc6080a71b046f480d9e6582898bca23c9c25ba0b6a0dc1363eaa510e2eb67">PLL_MUL_9</a></div><div class="ttdeci">@ PLL_MUL_9</div><div class="ttdef"><b>Definition:</b> RCC_int.h:40</div></div>
+<div class="ttc" id="a_r_c_c__int_8h_html_aef7aca7ad3182ff4e7f8f5fa95e5e486a0d3ea1773a2bd409fc17a6163719464e"><div class="ttname"><a href="_r_c_c__int_8h.html#aef7aca7ad3182ff4e7f8f5fa95e5e486a0d3ea1773a2bd409fc17a6163719464e">BUS_AHB_NONE</a></div><div class="ttdeci">@ BUS_AHB_NONE</div><div class="ttdef"><b>Definition:</b> RCC_int.h:97</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
