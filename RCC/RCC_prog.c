@@ -7,6 +7,7 @@
 /************************ Includes **************************/
 #include "RCC_int.h"
 #include "RCC_priv.h"
+
 /************************ Defines ***************************/
 #define ASSERT_PLL(mul) (((mul==PLL_MUL_2)||(mul==PLL_MUL_3)||(mul==PLL_MUL_4)||\
                          (mul==PLL_MUL_5)||(mul==PLL_MUL_6)||(mul==PLL_MUL_7)||\
@@ -27,7 +28,12 @@
 
 
 /*********************** Functions **************************/
-
+/************************************************************/
+/*  Func       : RCC_ErrorEnableHSE
+/*	Parameters : void
+/*	Return     : Error_t
+/*  Description: Enable High speed external clock
+/************************************************************/
 Error_t RCC_ErrorEnableHSE(void)
 {
     /* set HSEON */
@@ -37,6 +43,13 @@ Error_t RCC_ErrorEnableHSE(void)
     return OK;
 }
 
+/************************************************************/
+/*  Func       : RCC_ErrorEnableHSI
+/*	Parameters : void
+/*	Return     : Error_t
+/*  Description: Enable High speed internal clock & set it as
+/*               System clock.
+/************************************************************/
 Error_t RCC_ErrorEnableHSI(void)
 {
     /* SET HSION */
@@ -49,6 +62,14 @@ Error_t RCC_ErrorEnableHSI(void)
     return OK;
 }
 
+/************************************************************/
+/*  Func       : RCC_ErrorPLLConfig
+/*	Parameters : RCC_PLLMul_cpy: Pll Multiplier
+/*               RCC_ClkSrc_cpy: Clock source
+/*	Return     : Error_t
+/*  Description: configures the PLL and system clock if HSI
+/*               is not chosen as System clock.
+/************************************************************/
 Error_t RCC_ErrorPLLConfig(RCC_PLLMul_t RCC_PLLMul_cpy,RCC_ClkSrc_t RCC_ClkSrc_cpy)
 {
     Error_t ReturnVal = OK;
@@ -140,7 +161,14 @@ Error_t RCC_ErrorPLLConfig(RCC_PLLMul_t RCC_PLLMul_cpy,RCC_ClkSrc_t RCC_ClkSrc_c
 }
 
 /************************** APIs ****************************/
-
+/************************************************************/
+/*  Func       : RCC_ErrorSetSystemClock
+/*	Parameters : RCC_SysClkCfg_ptr: pointer to
+/*               RCC_ClkSrc_cpy: Clock source
+/*	Return     : Error_t
+/*  Description: configures the PLL and system clock if HSI
+/*               is not chosen as System clock.
+/************************************************************/
 Error_t RCC_ErrorSetSystemClock(RCC_SysClkCfg_t* RCC_SysClkCfg_ptr); // set default configuration in caso of NULL
 {
     Error_t ReturnVal = OK;
@@ -151,6 +179,14 @@ Error_t RCC_ErrorSetSystemClock(RCC_SysClkCfg_t* RCC_SysClkCfg_ptr); // set defa
     return ReturnVal;
 }
 
+/************************************************************/
+/*  Func       : RCC_ErrorPLLConfig
+/*	Parameters : RCC_PLLMul_cpy: Pll Multiplier
+/*               RCC_ClkSrc_cpy: Clock source
+/*	Return     : Error_t
+/*  Description: configures the PLL and system clock if HSI
+/*               is not chosen as System clock.
+/************************************************************/
 Error_t RCC_ErrorEnablePeripheral(RCC_Preph_t RCC_Preph_cpy);
 {
     if(RCC_Preph_cpy < APB2_MIN)
@@ -177,6 +213,14 @@ Error_t RCC_ErrorEnablePeripheral(RCC_Preph_t RCC_Preph_cpy);
     }
 }
 
+/************************************************************/
+/*  Func       : RCC_ErrorPLLConfig
+/*	Parameters : RCC_PLLMul_cpy: Pll Multiplier
+/*               RCC_ClkSrc_cpy: Clock source
+/*	Return     : Error_t
+/*  Description: configures the PLL and system clock if HSI
+/*               is not chosen as System clock.
+/************************************************************/
 Error_t RCC_ErrorDisablePeripheral(RCC_Preph_t RCC_Preph_cpy);
 {
     if(RCC_Preph_cpy < APB2_MIN)
@@ -202,6 +246,15 @@ Error_t RCC_ErrorDisablePeripheral(RCC_Preph_t RCC_Preph_cpy);
         return NOK;
     }
 }
+
+/************************************************************/
+/*  Func       : RCC_ErrorPLLConfig
+/*	Parameters : RCC_PLLMul_cpy: Pll Multiplier
+/*               RCC_ClkSrc_cpy: Clock source
+/*	Return     : Error_t
+/*  Description: configures the PLL and system clock if HSI
+/*               is not chosen as System clock.
+/************************************************************/
 Error_t RCC_ErrorResetPeripheral(RCC_Preph_t RCC_Preph_cpy);
 {
     if(RCC_Preph_cpy < APB2_MIN)
@@ -227,6 +280,14 @@ Error_t RCC_ErrorResetPeripheral(RCC_Preph_t RCC_Preph_cpy);
     }
 }
 
+/************************************************************/
+/*  Func       : RCC_ErrorPLLConfig
+/*	Parameters : RCC_PLLMul_cpy: Pll Multiplier
+/*               RCC_ClkSrc_cpy: Clock source
+/*	Return     : Error_t
+/*  Description: configures the PLL and system clock if HSI
+/*               is not chosen as System clock.
+/************************************************************/
 Error_t RCC_ErrorSetBusPrescaler(RCC_BusConfig_t* RCC_BusConfig_ptr);//set default configuration in caso of NULL
 {
   /* AHB */
@@ -242,26 +303,66 @@ Error_t RCC_ErrorSetBusPrescaler(RCC_BusConfig_t* RCC_BusConfig_ptr);//set defau
   return OK;
 }
 
+/************************************************************/
+/*  Func       : RCC_ErrorPLLConfig
+/*	Parameters : RCC_PLLMul_cpy: Pll Multiplier
+/*               RCC_ClkSrc_cpy: Clock source
+/*	Return     : Error_t
+/*  Description: configures the PLL and system clock if HSI
+/*               is not chosen as System clock.
+/************************************************************/
 Error_t RCC_ErrorEnableInterrupt(RCC_Int_t RCC_Int_cpy)
 {
     PR_BAND(RCC->CIR,RCC_Int_cpy+RCC_IE_OFFSET) = (uint_32) ON;
 }
 
+/************************************************************/
+/*  Func       : RCC_ErrorPLLConfig
+/*	Parameters : RCC_PLLMul_cpy: Pll Multiplier
+/*               RCC_ClkSrc_cpy: Clock source
+/*	Return     : Error_t
+/*  Description: configures the PLL and system clock if HSI
+/*               is not chosen as System clock.
+/************************************************************/
 Error_t RCC_ErrorDisableInterrupt(RCC_Int_t RCC_Int_t)
 {
     PR_BAND(RCC->CIR,RCC_Int_cpy+RCC_IE_OFFSET) = (uint_32) OFF;
 }
 
+/************************************************************/
+/*  Func       : RCC_ErrorPLLConfig
+/*	Parameters : RCC_PLLMul_cpy: Pll Multiplier
+/*               RCC_ClkSrc_cpy: Clock source
+/*	Return     : Error_t
+/*  Description: configures the PLL and system clock if HSI
+/*               is not chosen as System clock.
+/************************************************************/
 Error_t RCC_ErrorClearFlag(RCC_Int_t RCC_Int_cpy)
 {
     PR_BAND(RCC->CIR,RCC_Int_cpy+RCC_IC_OFFSET) = (uint_32) ON;
 }
 
+/************************************************************/
+/*  Func       : RCC_ErrorPLLConfig
+/*	Parameters : RCC_PLLMul_cpy: Pll Multiplier
+/*               RCC_ClkSrc_cpy: Clock source
+/*	Return     : Error_t
+/*  Description: configures the PLL and system clock if HSI
+/*               is not chosen as System clock.
+/************************************************************/
 uint_8  RCC_uint_8ReadFlag(RCC_Int_t RCC_Int_cpy)
 {
     (uint_8) GET_BIT(RCC->CIR,RCC_Int_cpy);
 }
 
+/************************************************************/
+/*  Func       : RCC_ErrorPLLConfig
+/*	Parameters : RCC_PLLMul_cpy: Pll Multiplier
+/*               RCC_ClkSrc_cpy: Clock source
+/*	Return     : Error_t
+/*  Description: configures the PLL and system clock if HSI
+/*               is not chosen as System clock.
+/************************************************************/
 Error_t RCC_ErrorSetClockOut(RCC_CLKOUT_t RCC_CLKOUT_cpy)
 {
     MASK_WORD(RCC->CFGR,MCO_MASK,MCO_3);

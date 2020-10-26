@@ -17,12 +17,6 @@
 
 /*********************** Typedefs ***************************/
 
-typedef struct{
-    RCC_PLLMul_t        RCC_PLLMul      ;
-    RCC_ClkSrc_t        RCC_ClockSource ;
-    RCC_CSS_t           RCC_CSS         ;
-} RCC_SysClkCfg_t;
-
 /* Pll configurations */
 typedef enum{
     /* boundaries */
@@ -67,6 +61,12 @@ typedef enum {
     RCC_CSS_OFF = 0x00
 } RCC_CSS_t;
 
+typedef struct{
+    RCC_PLLMul_t        RCC_PLLMul      ;
+    RCC_ClkSrc_t        RCC_ClockSource ;
+    RCC_CSS_t           RCC_CSS         ;
+} RCC_SysClkCfg_t;
+
 typedef enum{
     AHB         = 0x00,
     APB1        = 0xCF,
@@ -84,12 +84,12 @@ typedef enum{
     BUS_DIV_128 = 0x05,
     BUS_DIV_256 = 0x06,
     BUS_DIV_512 = 0x07,
-} RCC_BusPrescaler_t;
+} RCC_BusPre_t;
 
 typedef struct{
-    RCC_BusPrescaler_t  RCC_AHBPre;
-    RCC_BusPrescaler_t  RCC_APB1Pre;
-    RCC_BusPrescaler_t  RCC_APB2Pre;
+    RCC_BusPre_t  RCC_AHBPre;
+    RCC_BusPre_t  RCC_APB1Pre;
+    RCC_BusPre_t  RCC_APB2Pre;
 }RCC_BusConfig_t;
 
 typedef enum{
