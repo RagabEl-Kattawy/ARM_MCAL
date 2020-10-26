@@ -31,8 +31,25 @@
 #define PLLRDY 25
 
 // RCC_CFGR
+#define SW_2 0
+#define SWS_2 2
+#define HPRE_4 4
+#define PPRE1_3 8
+#define PPRE2_3 11
+#define ADCPRE_2 14
 #define PLLSRC 16
 #define PLLXTRE 17
+#define PLLMUL_4 18
+#define MCO_3 24
+
+#define SW_MASK 0x03
+#define SWS_MASK 0x03
+#define HPRE_MASK 0x0F
+#define PPRE1_MASK 0x07
+#define PPRE2_MASK 0x07
+#define ADCPRE_MASK 0x03
+#define PLLMUL_MASK 0x0F
+#define MCO_MASK 0x07
 
 // RCC_CIR
 #define LSIRDYF 0
@@ -57,7 +74,7 @@
 
 #define CSSC 23
 
-
+#define SW_PLL 0x02
 
 #define RCC 		((volatile RCC_Reg_t*) RCC_BASEADDRESS)
 /*********************** Typedefs ***************************/

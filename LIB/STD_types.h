@@ -28,8 +28,15 @@ typedef long double             f_96;
 typedef enum
 {
     OK		= 0x00,
-    NOK	= 0xCF,
+    NOK	= 0xCF
 }Error_t;
+
+typedef enum{
+    DISABLE = 0,
+    ENABLE  = 1,
+    ON      = 1,
+    OFF     = 0
+}Status_t
 
 
 #endif /* STD_TYPES_H_ */

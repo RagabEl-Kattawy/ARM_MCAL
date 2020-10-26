@@ -25,22 +25,30 @@ typedef struct{
 
 /* Pll configurations */
 typedef enum{
+    /* boundaries */
+    AHB_MIN     = 0x00,
+    AHB_MAX     = 0x1F,
+    APB2_MIN    = 0X20,
+    APB2_MAX    = 0x3F,
+    APB1_MIN    = 0x40,
+    APB1_MAX    = 0x5F,
+
     PLL_NONE    = 0x00,
-    PLL_MUL_2   = 0x02,
-    PLL_MUL_3   = 0x03,
-    PLL_MUL_4   = 0x04,
-    PLL_MUL_5   = 0x05,
-    PLL_MUL_6   = 0x06,
-    PLL_MUL_7   = 0x07,
-    PLL_MUL_8   = 0x08,
-    PLL_MUL_9   = 0x09,
-    PLL_MUL_10  = 0x0A,
-    PLL_MUL_11  = 0x0B,
-    PLL_MUL_12  = 0x0C,
-    PLL_MUL_13  = 0x0D,
-    PLL_MUL_14  = 0x0E,
-    PLL_MUL_15  = 0x0F,
-    PLL_MUL_16  = 0x10
+    PLL_MUL_2   = 0x01,
+    PLL_MUL_3   = 0x02,
+    PLL_MUL_4   = 0x03,
+    PLL_MUL_5   = 0x04,
+    PLL_MUL_6   = 0x05,
+    PLL_MUL_7   = 0x06,
+    PLL_MUL_8   = 0x07,
+    PLL_MUL_9   = 0x08,
+    PLL_MUL_10  = 0x09,
+    PLL_MUL_11  = 0x0A,
+    PLL_MUL_12  = 0x0B,
+    PLL_MUL_13  = 0x0C,
+    PLL_MUL_14  = 0x0D,
+    PLL_MUL_15  = 0x0E,
+    PLL_MUL_16  = 0x0F
 } RCC_PLLMul_t;
 
 /* system clock origin */
@@ -55,8 +63,8 @@ typedef enum {
 
 /* Clock Security configurations */
 typedef enum {
-    RCC_CSS_ON  = 0x00,
-    RCC_CSS_OFF = 0xCF
+    RCC_CSS_ON  = 0x01,
+    RCC_CSS_OFF = 0x00
 } RCC_CSS_t;
 
 typedef enum{
@@ -66,37 +74,39 @@ typedef enum{
 }RCC_Bus_t;
 
 typedef enum{
-    BUS_NONE    = 0x00,
-    BUS_DIV_2   = 0x02,
-    BUS_DIV_4   = 0x04,
-    BUS_DIV_8   = 0x08,
-    BUS_DIV_16  = 0xF0,
-    BUS_DIV_64  = 0xF2,
-    BUS_DIV_128 = 0xF4,
-    BUS_DIV_256 = 0xF8,
-    BUS_DIV_512 = 0xFF,
+    BUS_AHB_NONE= 0x08,
+    BUS_APB_NONE= 0x04,
+    BUS_DIV_2   = 0x00,
+    BUS_DIV_4   = 0x01,
+    BUS_DIV_8   = 0x02,
+    BUS_DIV_16  = 0x03,
+    BUS_DIV_64  = 0x04,
+    BUS_DIV_128 = 0x05,
+    BUS_DIV_256 = 0x06,
+    BUS_DIV_512 = 0x07,
 } RCC_BusPrescaler_t;
 
 typedef struct{
-    RCC_Bus_t           RCC_Bus;
-    RCC_BusPrescaler_t  RCC_BusPrescaler;
+    RCC_BusPrescaler_t  RCC_AHBPre;
+    RCC_BusPrescaler_t  RCC_APB1Pre;
+    RCC_BusPrescaler_t  RCC_APB2Pre;
 }RCC_BusConfig_t;
 
 typedef enum{
-    RCC_CSS_INT,
-    RCC_PLLRDY_INT,
-    RCC_HSERDY_INT,
-    RCC_HSIRDY_INT,
-    RCC_LSERDY_INT,
-    RCC_LSIRDY_INT
+    RCC_CSS_INT    = 7,
+    RCC_PLLRDY_INT = 4,
+    RCC_HSERDY_INT = 3,
+    RCC_HSIRDY_INT = 2,
+    RCC_LSERDY_INT = 1,
+    RCC_LSIRDY_INT = 0
 }RCC_Int_t;
 
 typedef enum{
-    RCC_NO_CLK_OUT,
-    RCC_SYSCLK_OUT,
-    RCC_HSI_OUT,
-    RCC_HSE_OUT,
-    RCC_PLL_DIV2_OUT
+    RCC_NO_CLK_OUT  = 0x04,
+    RCC_SYSCLK_OUT  = 0x00,
+    RCC_HSI_OUT     = 0x01,
+    RCC_HSE_OUT     = 0x02,
+    RCC_PLL_DIV2_OUT= 0x03
 }RCC_CLKOUT_t;
 
 typedef enum{
@@ -163,6 +173,7 @@ Error_t RCC_ErrorResetSystem(void);
 Error_t RCC_ErrorSetSystemClock(RCC_SysClkCfg_t* RCC_SysClkCfg_ptr); // set default configuration in caso of NULL
 Error_t RCC_ErrorEnablePeripheral(RCC_Preph_t RCC_Preph_cpy);
 Error_t RCC_ErrorDisablePeripheral(RCC_Preph_t RCC_Preph_cpy);
+Error_t RCC_ErrorResetPeripheral(RCC_Preph_t RCC_Preph_cpy);
 Error_t RCC_ErrorSetBusPrescaler(RCC_BusConfig_t* RCC_BusConfig_ptr);//set default configuration in caso of NULL
 Error_t RCC_ErrorEnableInterrupt(RCC_Int_t RCC_Int_cpy);
 Error_t RCC_ErrorDisableInterrupt(RCC_Int_t RCC_Int_t);
