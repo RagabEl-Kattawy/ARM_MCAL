@@ -8,7 +8,7 @@
 
 #define ERRORCODE NOK
 
-#define assert_param(expr) ((expr) ? (void)0 : return ERRORCODE)
+#define assert_param(expr) ((expr)?  (Error_t)OK : While(1))
 
 
 #endif /* ASSERT_H_ */

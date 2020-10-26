@@ -33,7 +33,7 @@
 #define PPRE2_3                 11
 #define ADCPRE_2                14
 #define PLLSRC                  16
-#define PLLXTRE                 17
+#define PLLXTPRE                17
 #define PLLMUL_4                18
 #define MCO_3                   24
 

@@ -1,0 +1,339 @@
+\hypertarget{_r_c_c__prog_8c}{}\doxysection{R\+C\+C\+\_\+prog.\+c File Reference}
+\label{_r_c_c__prog_8c}\index{RCC\_prog.c@{RCC\_prog.c}}
+
+
+R\+CC Driver Functions Implementaion It conatins both functions and A\+P\+Is implementation.  
+
+
+{\ttfamily \#include \char`\"{}R\+C\+C\+\_\+int.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}R\+C\+C\+\_\+priv.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_r_c_c__prog_8c_a6e3e58392b1bf2bce4dc80965594f20d}{I\+S\+\_\+\+P\+L\+L\+M\+U\+L\+\_\+\+V\+A\+L\+ID}}(mul)
+\begin{DoxyCompactList}\small\item\em Validate Pll mul value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_r_c_c__prog_8c_a01003d09f8716248d54d7d117acc4ff8}\label{_r_c_c__prog_8c_a01003d09f8716248d54d7d117acc4ff8}} 
+\#define {\bfseries I\+S\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+V\+A\+L\+ID}(conf)~(R\+C\+C\+\_\+\+Sys\+Clk\+Cfg\+\_\+ptr == N\+U\+LL)
+\item 
+\mbox{\Hypertarget{_r_c_c__prog_8c_acd999a6ccd447b749d7547c09ae2fe71}\label{_r_c_c__prog_8c_acd999a6ccd447b749d7547c09ae2fe71}} 
+\#define \mbox{\hyperlink{_r_c_c__prog_8c_acd999a6ccd447b749d7547c09ae2fe71}{A\+H\+B\+\_\+\+P\+R\+E\+\_\+\+C\+H\+E\+CK}}~0x08
+\begin{DoxyCompactList}\small\item\em Decoding A\+HB prescaled value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_r_c_c__prog_8c_a28e1c9dc0f60177bff930279eca3eb27}\label{_r_c_c__prog_8c_a28e1c9dc0f60177bff930279eca3eb27}} 
+\#define \mbox{\hyperlink{_r_c_c__prog_8c_a28e1c9dc0f60177bff930279eca3eb27}{A\+P\+B\+\_\+\+P\+R\+E\+\_\+\+C\+H\+E\+CK}}~0x04
+\begin{DoxyCompactList}\small\item\em Decoding A\+PB prescaler value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_r_c_c__prog_8c_ad415fe2fa89f25eff22733f557e41cc8}\label{_r_c_c__prog_8c_ad415fe2fa89f25eff22733f557e41cc8}} 
+\#define \mbox{\hyperlink{_r_c_c__prog_8c_ad415fe2fa89f25eff22733f557e41cc8}{M\+C\+O\+\_\+\+C\+H\+E\+CK}}~0x04
+\begin{DoxyCompactList}\small\item\em Decoding M\+CO value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_r_c_c__prog_8c_ad83cb986513e241ebd4e9eb87ca7a074}\label{_r_c_c__prog_8c_ad83cb986513e241ebd4e9eb87ca7a074}} 
+\#define \mbox{\hyperlink{_r_c_c__prog_8c_ad83cb986513e241ebd4e9eb87ca7a074}{R\+C\+C\+\_\+\+I\+E\+\_\+\+O\+F\+F\+S\+ET}}~0x08
+\begin{DoxyCompactList}\small\item\em Interrupt enable decoding offset. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_r_c_c__prog_8c_a732b49c60293c9440a587182cfa15e5d}\label{_r_c_c__prog_8c_a732b49c60293c9440a587182cfa15e5d}} 
+\#define \mbox{\hyperlink{_r_c_c__prog_8c_a732b49c60293c9440a587182cfa15e5d}{R\+C\+C\+\_\+\+I\+C\+\_\+\+O\+F\+F\+S\+ET}}~0x1F
+\begin{DoxyCompactList}\small\item\em Interrupt clear decoding offset. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_aa8a286ce12a26f785aa143e0e77b6eab}{R\+C\+C\+\_\+\+Error\+Enable\+H\+SE}} (void)
+\begin{DoxyCompactList}\small\item\em Enable High speed external clock. \end{DoxyCompactList}\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_a23ee2312c2599a6eba978a6264bf336b}{R\+C\+C\+\_\+\+Error\+Enable\+H\+SI}} (void)
+\begin{DoxyCompactList}\small\item\em Enable High speed internal clock \& set it as System clock. \end{DoxyCompactList}\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_afffec5973c349189803aeee7b4665ec7}{R\+C\+C\+\_\+\+Error\+P\+L\+L\+Config}} (R\+C\+C\+\_\+\+P\+L\+L\+Mul\+\_\+t R\+C\+C\+\_\+\+P\+L\+L\+Mul\+\_\+cpy, R\+C\+C\+\_\+\+Clk\+Src\+\_\+t R\+C\+C\+\_\+\+Clk\+Src\+\_\+cpy)
+\begin{DoxyCompactList}\small\item\em configures the P\+LL and system clock if H\+SI is not chosen as System clock. \end{DoxyCompactList}\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_a2a9dd36179ec608e21ac5f12bca1b37c}{R\+C\+C\+\_\+\+Error\+Set\+System\+Clock}} (\mbox{\hyperlink{struct_r_c_c___sys_clk_cfg__t}{R\+C\+C\+\_\+\+Sys\+Clk\+Cfg\+\_\+t}} $\ast$R\+C\+C\+\_\+\+Sys\+Clk\+Cfg\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em configures the P\+LL and system clock if H\+SI is not chosen as System clock. \end{DoxyCompactList}\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_a622fe2ee3f6a50138f5866966eb0902d}{R\+C\+C\+\_\+\+Error\+Enable\+Peripheral}} (R\+C\+C\+\_\+\+Preph\+\_\+t R\+C\+C\+\_\+\+Preph\+\_\+cpy)
+\begin{DoxyCompactList}\small\item\em Cotrol peripherals clock (Enable). \end{DoxyCompactList}\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_aa41cadcc4b17da298b054ae5a345bae0}{R\+C\+C\+\_\+\+Error\+Disable\+Peripheral}} (R\+C\+C\+\_\+\+Preph\+\_\+t R\+C\+C\+\_\+\+Preph\+\_\+cpy)
+\begin{DoxyCompactList}\small\item\em Cotrol peripherals clock (Disable). \end{DoxyCompactList}\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_a70c0394a7fa8b7defac469cddd8dad66}{R\+C\+C\+\_\+\+Error\+Reset\+Peripheral}} (R\+C\+C\+\_\+\+Preph\+\_\+t R\+C\+C\+\_\+\+Preph\+\_\+cpy)
+\begin{DoxyCompactList}\small\item\em Reset peripherals configurations. \end{DoxyCompactList}\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_a53ff8d56abc530026f71454209faa791}{R\+C\+C\+\_\+\+Error\+Set\+Bus\+Prescaler}} (\mbox{\hyperlink{struct_r_c_c___bus_config__t}{R\+C\+C\+\_\+\+Bus\+Config\+\_\+t}} $\ast$R\+C\+C\+\_\+\+Bus\+Config\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Configure Buses Prescalers. \end{DoxyCompactList}\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_a95e5e13ac42382ad5b5b38981fa83c6c}{R\+C\+C\+\_\+\+Error\+Enable\+Interrupt}} (R\+C\+C\+\_\+\+Int\+\_\+t R\+C\+C\+\_\+\+Int\+\_\+cpy)
+\begin{DoxyCompactList}\small\item\em Control R\+CC Interrupts (Enable) \end{DoxyCompactList}\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_ab6e0baaee24d5070961de358d81190b4}{R\+C\+C\+\_\+\+Error\+Disable\+Interrupt}} (R\+C\+C\+\_\+\+Int\+\_\+t R\+C\+C\+\_\+\+Int\+\_\+cpy)
+\begin{DoxyCompactList}\small\item\em Control R\+CC Interrupts (Disable) \end{DoxyCompactList}\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_ac58799af5c859c30888c02f641981a8a}{R\+C\+C\+\_\+\+Error\+Clear\+Flag}} (R\+C\+C\+\_\+\+Int\+\_\+t R\+C\+C\+\_\+\+Int\+\_\+cpy)
+\begin{DoxyCompactList}\small\item\em Clear R\+CC Interrupt flags. \end{DoxyCompactList}\item 
+uint\+\_\+8 \mbox{\hyperlink{_r_c_c__prog_8c_a8627d0604c39128c6207edcbbd7465ec}{R\+C\+C\+\_\+uint\+\_\+8\+Read\+Flag}} (R\+C\+C\+\_\+\+Int\+\_\+t R\+C\+C\+\_\+\+Int\+\_\+cpy)
+\begin{DoxyCompactList}\small\item\em Read R\+CC interrupt flags. \end{DoxyCompactList}\item 
+Error\+\_\+t \mbox{\hyperlink{_r_c_c__prog_8c_ab5e40b86234e0eb1c8fa64944bc62a10}{R\+C\+C\+\_\+\+Error\+Set\+Clock\+Out}} (R\+C\+C\+\_\+\+C\+L\+K\+O\+U\+T\+\_\+t R\+C\+C\+\_\+\+C\+L\+K\+O\+U\+T\+\_\+cpy)
+\begin{DoxyCompactList}\small\item\em Set the Microcontroller Clock Output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+R\+CC Driver Functions Implementaion It conatins both functions and A\+P\+Is implementation. 
+
+\begin{DoxyAuthor}{Author}
+Ragab R. Elkattawy (\href{mailto:r.elkattawy@gmail.com}{\texttt{ r.\+elkattawy@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+10-\/26-\/2020
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Ragab Elkattawy (c) 2020 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_r_c_c__prog_8c_a6e3e58392b1bf2bce4dc80965594f20d}\label{_r_c_c__prog_8c_a6e3e58392b1bf2bce4dc80965594f20d}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!IS\_PLLMUL\_VALID@{IS\_PLLMUL\_VALID}}
+\index{IS\_PLLMUL\_VALID@{IS\_PLLMUL\_VALID}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{IS\_PLLMUL\_VALID}{IS\_PLLMUL\_VALID}}
+{\footnotesize\ttfamily \#define I\+S\+\_\+\+P\+L\+L\+M\+U\+L\+\_\+\+V\+A\+L\+ID(\begin{DoxyParamCaption}\item[{}]{mul }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{                         (mul==PLL\_MUL\_2)||(mul==PLL\_MUL\_3)||(mul==PLL\_MUL\_4)||\(\backslash\)}
+\DoxyCodeLine{                         (mul==PLL\_MUL\_5)||(mul==PLL\_MUL\_6)||(mul==PLL\_MUL\_7)||\(\backslash\)}
+\DoxyCodeLine{                         (mul==PLL\_MUL\_8)||(mul==PLL\_MUL\_9)||(mul==PLL\_MUL\_10)||\(\backslash\)}
+\DoxyCodeLine{                         (mul==PLL\_MUL\_11)||(mul==PLL\_MUL\_12)||(mul==PLL\_MUL\_13)||\(\backslash\)}
+\DoxyCodeLine{                         (mul==PLL\_MUL\_14)||(mul==PLL\_MUL\_15)||(mul==PLL\_MUL\_16)}
+
+\end{DoxyCode}
+
+
+Validate Pll mul value. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_r_c_c__prog_8c_ac58799af5c859c30888c02f641981a8a}\label{_r_c_c__prog_8c_ac58799af5c859c30888c02f641981a8a}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorClearFlag@{RCC\_ErrorClearFlag}}
+\index{RCC\_ErrorClearFlag@{RCC\_ErrorClearFlag}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorClearFlag()}{RCC\_ErrorClearFlag()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+Clear\+Flag (\begin{DoxyParamCaption}\item[{R\+C\+C\+\_\+\+Int\+\_\+t}]{R\+C\+C\+\_\+\+Int\+\_\+cpy }\end{DoxyParamCaption})}
+
+
+
+Clear R\+CC Interrupt flags. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+C\+C\+\_\+\+Int\+\_\+cpy} & interrupt signal index M\+U\+ST be R\+C\+C\+\_\+\+Int\+\_\+t type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_ab6e0baaee24d5070961de358d81190b4}\label{_r_c_c__prog_8c_ab6e0baaee24d5070961de358d81190b4}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorDisableInterrupt@{RCC\_ErrorDisableInterrupt}}
+\index{RCC\_ErrorDisableInterrupt@{RCC\_ErrorDisableInterrupt}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorDisableInterrupt()}{RCC\_ErrorDisableInterrupt()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+Disable\+Interrupt (\begin{DoxyParamCaption}\item[{R\+C\+C\+\_\+\+Int\+\_\+t}]{R\+C\+C\+\_\+\+Int\+\_\+cpy }\end{DoxyParamCaption})}
+
+
+
+Control R\+CC Interrupts (Disable) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+C\+C\+\_\+\+Int\+\_\+cpy} & interrupt signal index M\+U\+ST be R\+C\+C\+\_\+\+Int\+\_\+t type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Erroe code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_aa41cadcc4b17da298b054ae5a345bae0}\label{_r_c_c__prog_8c_aa41cadcc4b17da298b054ae5a345bae0}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorDisablePeripheral@{RCC\_ErrorDisablePeripheral}}
+\index{RCC\_ErrorDisablePeripheral@{RCC\_ErrorDisablePeripheral}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorDisablePeripheral()}{RCC\_ErrorDisablePeripheral()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+Disable\+Peripheral (\begin{DoxyParamCaption}\item[{R\+C\+C\+\_\+\+Preph\+\_\+t}]{R\+C\+C\+\_\+\+Preph\+\_\+cpy }\end{DoxyParamCaption})}
+
+
+
+Cotrol peripherals clock (Disable). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+C\+C\+\_\+\+Preph\+\_\+cpy} & Peripheral index M\+U\+ST be R\+C\+C\+\_\+\+Preph\+\_\+t type and range. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Erroe code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_aa8a286ce12a26f785aa143e0e77b6eab}\label{_r_c_c__prog_8c_aa8a286ce12a26f785aa143e0e77b6eab}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorEnableHSE@{RCC\_ErrorEnableHSE}}
+\index{RCC\_ErrorEnableHSE@{RCC\_ErrorEnableHSE}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorEnableHSE()}{RCC\_ErrorEnableHSE()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+Enable\+H\+SE (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Enable High speed external clock. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Error Code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_a23ee2312c2599a6eba978a6264bf336b}\label{_r_c_c__prog_8c_a23ee2312c2599a6eba978a6264bf336b}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorEnableHSI@{RCC\_ErrorEnableHSI}}
+\index{RCC\_ErrorEnableHSI@{RCC\_ErrorEnableHSI}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorEnableHSI()}{RCC\_ErrorEnableHSI()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+Enable\+H\+SI (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Enable High speed internal clock \& set it as System clock. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Error Code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_a95e5e13ac42382ad5b5b38981fa83c6c}\label{_r_c_c__prog_8c_a95e5e13ac42382ad5b5b38981fa83c6c}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorEnableInterrupt@{RCC\_ErrorEnableInterrupt}}
+\index{RCC\_ErrorEnableInterrupt@{RCC\_ErrorEnableInterrupt}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorEnableInterrupt()}{RCC\_ErrorEnableInterrupt()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+Enable\+Interrupt (\begin{DoxyParamCaption}\item[{R\+C\+C\+\_\+\+Int\+\_\+t}]{R\+C\+C\+\_\+\+Int\+\_\+cpy }\end{DoxyParamCaption})}
+
+
+
+Control R\+CC Interrupts (Enable) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+C\+C\+\_\+\+Int\+\_\+cpy} & interrupt signal index M\+U\+ST be R\+C\+C\+\_\+\+Int\+\_\+t type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Erroe code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_a622fe2ee3f6a50138f5866966eb0902d}\label{_r_c_c__prog_8c_a622fe2ee3f6a50138f5866966eb0902d}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorEnablePeripheral@{RCC\_ErrorEnablePeripheral}}
+\index{RCC\_ErrorEnablePeripheral@{RCC\_ErrorEnablePeripheral}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorEnablePeripheral()}{RCC\_ErrorEnablePeripheral()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+Enable\+Peripheral (\begin{DoxyParamCaption}\item[{R\+C\+C\+\_\+\+Preph\+\_\+t}]{R\+C\+C\+\_\+\+Preph\+\_\+cpy }\end{DoxyParamCaption})}
+
+
+
+Cotrol peripherals clock (Enable). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+C\+C\+\_\+\+Preph\+\_\+cpy} & Peripheral index M\+U\+ST be R\+C\+C\+\_\+\+Preph\+\_\+t type and range. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Erroe code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_afffec5973c349189803aeee7b4665ec7}\label{_r_c_c__prog_8c_afffec5973c349189803aeee7b4665ec7}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorPLLConfig@{RCC\_ErrorPLLConfig}}
+\index{RCC\_ErrorPLLConfig@{RCC\_ErrorPLLConfig}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorPLLConfig()}{RCC\_ErrorPLLConfig()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+P\+L\+L\+Config (\begin{DoxyParamCaption}\item[{R\+C\+C\+\_\+\+P\+L\+L\+Mul\+\_\+t}]{R\+C\+C\+\_\+\+P\+L\+L\+Mul\+\_\+cpy,  }\item[{R\+C\+C\+\_\+\+Clk\+Src\+\_\+t}]{R\+C\+C\+\_\+\+Clk\+Src\+\_\+cpy }\end{DoxyParamCaption})}
+
+
+
+configures the P\+LL and system clock if H\+SI is not chosen as System clock. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+C\+C\+\_\+\+P\+L\+L\+Mul\+\_\+cpy} & P\+LL Multiplier Must be R\+C\+C\+\_\+\+P\+L\+L\+Mul\+\_\+t type. \\
+\hline
+{\em R\+C\+C\+\_\+\+Clk\+Src\+\_\+cpy} & Clock source Must be R\+C\+C\+\_\+\+Clk\+Src\+\_\+t type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Error Code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_a70c0394a7fa8b7defac469cddd8dad66}\label{_r_c_c__prog_8c_a70c0394a7fa8b7defac469cddd8dad66}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorResetPeripheral@{RCC\_ErrorResetPeripheral}}
+\index{RCC\_ErrorResetPeripheral@{RCC\_ErrorResetPeripheral}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorResetPeripheral()}{RCC\_ErrorResetPeripheral()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+Reset\+Peripheral (\begin{DoxyParamCaption}\item[{R\+C\+C\+\_\+\+Preph\+\_\+t}]{R\+C\+C\+\_\+\+Preph\+\_\+cpy }\end{DoxyParamCaption})}
+
+
+
+Reset peripherals configurations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+C\+C\+\_\+\+Preph\+\_\+cpy} & Peripheral index M\+U\+ST be R\+C\+C\+\_\+\+Preph\+\_\+t type and range. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Erroe code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_a53ff8d56abc530026f71454209faa791}\label{_r_c_c__prog_8c_a53ff8d56abc530026f71454209faa791}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorSetBusPrescaler@{RCC\_ErrorSetBusPrescaler}}
+\index{RCC\_ErrorSetBusPrescaler@{RCC\_ErrorSetBusPrescaler}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorSetBusPrescaler()}{RCC\_ErrorSetBusPrescaler()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+Set\+Bus\+Prescaler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_c_c___bus_config__t}{R\+C\+C\+\_\+\+Bus\+Config\+\_\+t}} $\ast$}]{R\+C\+C\+\_\+\+Bus\+Config\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Configure Buses Prescalers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+C\+C\+\_\+\+Bus\+Config\+\_\+ptr} & Pointer to \mbox{\hyperlink{struct_r_c_c___bus_config__t}{R\+C\+C\+\_\+\+Bus\+Config\+\_\+t}} contains the Buses prescalers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Erroe code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_ab5e40b86234e0eb1c8fa64944bc62a10}\label{_r_c_c__prog_8c_ab5e40b86234e0eb1c8fa64944bc62a10}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorSetClockOut@{RCC\_ErrorSetClockOut}}
+\index{RCC\_ErrorSetClockOut@{RCC\_ErrorSetClockOut}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorSetClockOut()}{RCC\_ErrorSetClockOut()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+Set\+Clock\+Out (\begin{DoxyParamCaption}\item[{R\+C\+C\+\_\+\+C\+L\+K\+O\+U\+T\+\_\+t}]{R\+C\+C\+\_\+\+C\+L\+K\+O\+U\+T\+\_\+cpy }\end{DoxyParamCaption})}
+
+
+
+Set the Microcontroller Clock Output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+C\+C\+\_\+\+C\+L\+K\+O\+U\+T\+\_\+cpy} & Microcontroller Clock Output source M\+U\+ST be R\+C\+C\+\_\+\+C\+L\+K\+O\+U\+T\+\_\+t type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Error code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_a2a9dd36179ec608e21ac5f12bca1b37c}\label{_r_c_c__prog_8c_a2a9dd36179ec608e21ac5f12bca1b37c}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_ErrorSetSystemClock@{RCC\_ErrorSetSystemClock}}
+\index{RCC\_ErrorSetSystemClock@{RCC\_ErrorSetSystemClock}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_ErrorSetSystemClock()}{RCC\_ErrorSetSystemClock()}}
+{\footnotesize\ttfamily Error\+\_\+t R\+C\+C\+\_\+\+Error\+Set\+System\+Clock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_c_c___sys_clk_cfg__t}{R\+C\+C\+\_\+\+Sys\+Clk\+Cfg\+\_\+t}} $\ast$}]{R\+C\+C\+\_\+\+Sys\+Clk\+Cfg\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+configures the P\+LL and system clock if H\+SI is not chosen as System clock. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+C\+C\+\_\+\+Sys\+Clk\+Cfg\+\_\+ptr} & Pointer to \mbox{\hyperlink{struct_r_c_c___sys_clk_cfg__t}{R\+C\+C\+\_\+\+Sys\+Clk\+Cfg\+\_\+t}} must contatin proper configurtion options. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+\_\+t Error Code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_r_c_c__prog_8c_a8627d0604c39128c6207edcbbd7465ec}\label{_r_c_c__prog_8c_a8627d0604c39128c6207edcbbd7465ec}} 
+\index{RCC\_prog.c@{RCC\_prog.c}!RCC\_uint\_8ReadFlag@{RCC\_uint\_8ReadFlag}}
+\index{RCC\_uint\_8ReadFlag@{RCC\_uint\_8ReadFlag}!RCC\_prog.c@{RCC\_prog.c}}
+\doxysubsubsection{\texorpdfstring{RCC\_uint\_8ReadFlag()}{RCC\_uint\_8ReadFlag()}}
+{\footnotesize\ttfamily uint\+\_\+8 R\+C\+C\+\_\+uint\+\_\+8\+Read\+Flag (\begin{DoxyParamCaption}\item[{R\+C\+C\+\_\+\+Int\+\_\+t}]{R\+C\+C\+\_\+\+Int\+\_\+cpy }\end{DoxyParamCaption})}
+
+
+
+Read R\+CC interrupt flags. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+C\+C\+\_\+\+Int\+\_\+cpy} & interrupt signal index M\+U\+ST be R\+C\+C\+\_\+\+Int\+\_\+t type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint\+\_\+8 Interrupt flag. 
+\end{DoxyReturn}

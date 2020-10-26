@@ -18,6 +18,11 @@
 /*********************** Typedefs ***************************/
 
 /* Pll configurations */
+
+/**
+ * @brief 
+ * 
+ */
 typedef enum{
     /* boundaries */
     AHB_MIN     = 0x00,
@@ -169,17 +174,85 @@ typedef enum{
 
 
 /************************* APIs *****************************/
-Error_t RCC_ErrorResetSystem(void);
-Error_t RCC_ErrorSetSystemClock(RCC_SysClkCfg_t* RCC_SysClkCfg_ptr); // set default configuration in caso of NULL
+/**
+ * @brief configures the PLL and system clock if HSI 
+ * is not chosen as System clock.
+ * 
+ * @param RCC_SysClkCfg_ptr Pointer to RCC_SysClkCfg_t must contatin proper
+ *  configurtion options.
+ * @return Error_t Error Code.
+ */
+Error_t RCC_ErrorSetSystemClock(RCC_SysClkCfg_t* RCC_SysClkCfg_ptr);
+
+/**
+ * @brief Cotrol peripherals clock (Enable).
+ * 
+ * @param RCC_Preph_cpy Peripheral index MUST be RCC_Preph_t type and range.
+ * @return Error_t Erroe code.
+ */
 Error_t RCC_ErrorEnablePeripheral(RCC_Preph_t RCC_Preph_cpy);
+
+/**
+ * @brief Cotrol peripherals clock (Disable).
+ * 
+ * @param RCC_Preph_cpy Peripheral index MUST be RCC_Preph_t type and range.
+ * @return Error_t Erroe code.
+ */
 Error_t RCC_ErrorDisablePeripheral(RCC_Preph_t RCC_Preph_cpy);
+
+/**
+ * @brief Reset peripherals configurations.
+ * 
+ * @param RCC_Preph_cpy Peripheral index MUST be RCC_Preph_t type and range.
+ * @return Error_t Erroe code.
+ */
 Error_t RCC_ErrorResetPeripheral(RCC_Preph_t RCC_Preph_cpy);
-Error_t RCC_ErrorSetBusPrescaler(RCC_BusConfig_t* RCC_BusConfig_ptr);//set default configuration in caso of NULL
+
+/**
+ * @brief Configure Buses Prescalers
+ * 
+ * @param RCC_BusConfig_ptr Pointer to RCC_BusConfig_t contains the Buses prescalers.
+ * @return Error_t Erroe code.
+ */
+Error_t RCC_ErrorSetBusPrescaler(RCC_BusConfig_t* RCC_BusConfig_ptr);
+
+/**
+ * @brief Control RCC Interrupts (Enable)
+ * 
+ * @param RCC_Int_cpy interrupt signal index MUST be RCC_Int_t type.
+ * @return Error_t Erroe code.
+ */
 Error_t RCC_ErrorEnableInterrupt(RCC_Int_t RCC_Int_cpy);
-Error_t RCC_ErrorDisableInterrupt(RCC_Int_t RCC_Int_t);
+
+/**
+ * @brief Control RCC Interrupts (Disable)
+ * 
+ * @param RCC_Int_cpy interrupt signal index MUST be RCC_Int_t type.
+ * @return Error_t Erroe code.
+ */
+Error_t RCC_ErrorDisableInterrupt(RCC_Int_t RCC_Int_cpy);
+
+/**
+ * @brief Clear RCC Interrupt flags.
+ * 
+ * @param RCC_Int_cpy interrupt signal index MUST be RCC_Int_t type.
+ * @return Error_t Error code.
+ */
 Error_t RCC_ErrorClearFlag(RCC_Int_t RCC_Int_cpy);
+/**
+ * @brief Read RCC interrupt flags.
+ * 
+ * @param RCC_Int_cpy interrupt signal index MUST be RCC_Int_t type.
+ * @return uint_8 Interrupt flag.
+ */
 uint_8  RCC_uint_8ReadFlag(RCC_Int_t RCC_Int_cpy);
-Error_t RCC_ErrorSetClockOut(RCC_CLKOUT_t);
-RCC_CLKOUT_t  RCC_RCC_CLKOUT_tGetClockOut(void);
+/**
+ * @brief Set the Microcontroller Clock Output.
+ * 
+ * @param RCC_CLKOUT_cpy Microcontroller Clock Output source MUST be RCC_CLKOUT_t type.
+ * @return Error_t Error code.
+ */
+
+Error_t RCC_ErrorSetClockOut(RCC_CLKOUT_t RCC_CLKOUT_cpy);
 
 #endif /* RCC_INT_H_ */

@@ -25,6 +25,10 @@ typedef double                  f_64;
 
 typedef long double             f_96;
 
+#ifndef NULL 
+#define NULL                    ((void *)0)
+#endif
+
 typedef enum
 {
     OK		= 0x00,
