@@ -1,0 +1,161 @@
+/**
+ * @file GPIO_int.h
+ * @author Ragab R. Elkattawy (r.elkattawy@gmail.com)
+ * @brief The interface file (should be included in any file using GPIO APIs)
+ * @version 0.1
+ * @date 11-02-2020
+ * 
+ * @copyright Ragab Elkattawy (c) 2020
+ * 
+ */
+
+#ifndef GPIO_INT_H_
+#define GPIO_INT_H_
+
+typedef enum
+{
+GPIO_A00,
+GPIO_A01,
+GPIO_A02,
+GPIO_A03,
+GPIO_A04,
+GPIO_A05,
+GPIO_A06,
+GPIO_A07,
+GPIO_A08,
+GPIO_A09,
+GPIO_A10,
+GPIO_A11,
+GPIO_A12,
+GPIO_A13,
+GPIO_A14,
+GPIO_A15,
+
+GPIO_B00,
+GPIO_B01,
+GPIO_B02,
+GPIO_B03,
+GPIO_B04,
+GPIO_B05,
+GPIO_B06,
+GPIO_B07,
+GPIO_B08,
+GPIO_B09,
+GPIO_B10,
+GPIO_B11,
+GPIO_B12,
+GPIO_B13,
+GPIO_B14,
+GPIO_B15,
+
+GPIO_C00,
+GPIO_C01,
+GPIO_C02,
+GPIO_C03,
+GPIO_C04,
+GPIO_C05,
+GPIO_C06,
+GPIO_C07,
+GPIO_C08,
+GPIO_C09,
+GPIO_C10,
+GPIO_C11,
+GPIO_C12,
+GPIO_C13,
+GPIO_C14,
+GPIO_C15,
+
+GPIO_D00,
+GPIO_D01,
+GPIO_D02,
+GPIO_D03,
+GPIO_D04,
+GPIO_D05,
+GPIO_D06,
+GPIO_D07,
+GPIO_D08,
+GPIO_D09,
+GPIO_D10,
+GPIO_D11,
+GPIO_D12,
+GPIO_D13,
+GPIO_D14,
+GPIO_D15,
+
+GPIO_E00,
+GPIO_E01,
+GPIO_E02,
+GPIO_E03,
+GPIO_E04,
+GPIO_E05,
+GPIO_E06,
+GPIO_E07,
+GPIO_E08,
+GPIO_E09,
+GPIO_E10,
+GPIO_E11,
+GPIO_E12,
+GPIO_E13,
+GPIO_E14,
+GPIO_E15,
+
+GPIO_F00,
+GPIO_F01,
+GPIO_F02,
+GPIO_F03,
+GPIO_F04,
+GPIO_F05,
+GPIO_F06,
+GPIO_F07,
+GPIO_F08,
+GPIO_F09,
+GPIO_F10,
+GPIO_F11,
+GPIO_F12,
+GPIO_F13,
+GPIO_F14,
+GPIO_F15,
+
+GPIO_G00,
+GPIO_G01,
+GPIO_G02,
+GPIO_G03,
+GPIO_G04,
+GPIO_G05,
+GPIO_G06,
+GPIO_G07,
+GPIO_G08,
+GPIO_G09,
+GPIO_G10,
+GPIO_G11,
+GPIO_G12,
+GPIO_G13,
+GPIO_G14,
+GPIO_G15,
+}GPIO_PinIdx_t;
+
+typedef enum
+{
+
+}GPIO_Pincfg_t;
+
+typedef enum
+{
+
+}GPIO_PinDtat_t;
+
+typedef struct
+{
+    GPIO_PinIdx_t   GPIO_PinIdx;
+    GPIO_Pincfg_t   GPIO_Pincfg;
+    GPIO_PinDtat_t  GPIO_PinDtat;
+}GPIO_Pin_t;
+
+
+
+
+Error_t GPIO_ErrorSetPinMode(/* pointer to pin configuration struct */ );
+Error_t GPIO_ErrorDriveOutPin(/* pointer to pin data struct */);
+
+
+#endif /* GPIO_INT_H_ */

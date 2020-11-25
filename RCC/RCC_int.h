@@ -12,9 +12,7 @@
 #define RCC_INT_H_
 
 /************************ Includes **************************/
-#include "../LIB/STD_types.h"
-#include "../LIB/BIT_math.h"
-#include "../LIB/ASSERT.h"
+
 
 /************************ Defines ***************************/
 

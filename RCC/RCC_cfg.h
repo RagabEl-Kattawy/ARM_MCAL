@@ -1,7 +1,7 @@
 /**
  * @file RCC_cfg.h
  * @author Ragab R. Elkattawy (r.elkattawy@gmail.com)
- * @brief 
+ * @brief The configuration file of the RCC peripheral it contains the available configuration structure
  * @version 0.1
  * @date 10-26-2020
  * 
