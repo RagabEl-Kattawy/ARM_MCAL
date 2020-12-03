@@ -19,7 +19,7 @@
  * @brief System configuration Structure.
  * 
  */
-RCC_SysClkCfg_t RCC_SysClkCfg
+RCC_SysClkCfg_t RCC_SysClkCfg =
 {
     PLL_MUL_9,  
     RCC_HSE,
@@ -30,7 +30,7 @@ RCC_SysClkCfg_t RCC_SysClkCfg
  * @brief Bus prescalers structure
  * 
  */
-RCC_BusConfig_t RCC_BusConfig
+RCC_BusConfig_t RCC_BusConfig =
 {
     BUS_AHB_NONE,
     BUS_DIV_2,

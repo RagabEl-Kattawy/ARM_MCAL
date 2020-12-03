@@ -11,9 +11,9 @@
  */
 
 /************************ Includes **************************/
+
 #include "RCC_int.h"
 #include "RCC_priv.h"
-#include "RCC_cfg.h"
 
 /************************ Defines ***************************/
 
@@ -27,7 +27,7 @@
                          (mul==PLL_MUL_11)||(mul==PLL_MUL_12)||(mul==PLL_MUL_13)||\
                          (mul==PLL_MUL_14)||(mul==PLL_MUL_15)||(mul==PLL_MUL_16)
 
-#define IS_SYS_CLK_VALID(conf) (RCC_SysClkCfg_ptr == NULL)
+#define IS_SYS_CLK_VALID(conf) (RCC_SysClkCfg_ptr != NULL)
 /// Decoding AHB prescaled value
 #define AHB_PRE_CHECK   0x08
 /// Decoding APB prescaler value
@@ -143,6 +143,9 @@ Error_t RCC_ErrorPLLConfig(RCC_PLLMul_t RCC_PLLMul_cpy,RCC_ClkSrc_t RCC_ClkSrc_c
             /* HSE Bypassed and divided by 2 */
             case RCC_HSE_PYP_2:
             PR_BAND(RCC->CFGR,PLLXTPRE) = (uint_32) ON;
+            PR_BAND(RCC->CR,HSEON) = (uint_32) OFF;
+            PR_BAND(RCC->CR,HSEBYP) = (uint_32) ON;
+            break;
 
             /* HSE Bypassed */
             case RCC_HSE_PYP:
@@ -152,7 +155,11 @@ Error_t RCC_ErrorPLLConfig(RCC_PLLMul_t RCC_PLLMul_cpy,RCC_ClkSrc_t RCC_ClkSrc_c
 
             /* HSE divided by 2*/
             case RCC_HSE_2:
+
             PR_BAND(RCC->CFGR,PLLXTPRE) = (uint_32) ON;
+            RCC_ErrorEnableHSE();
+            PR_BAND(RCC->CFGR,PLLSRC) = (uint_32) ON;
+            break;
 
             /* HSE direct */
             case RCC_HSE:
@@ -173,6 +180,7 @@ Error_t RCC_ErrorPLLConfig(RCC_PLLMul_t RCC_PLLMul_cpy,RCC_ClkSrc_t RCC_ClkSrc_c
         MASK_WORD(RCC->CFGR,SW_MASK,SW_2);
         SET_MASKED(RCC->CFGR,SW_PLL,SW_2);
     }
+    return ReturnVal;
 }
 
 /************************** APIs ****************************/
@@ -322,6 +330,7 @@ Error_t RCC_ErrorSetBusPrescaler(RCC_BusConfig_t* RCC_BusConfig_ptr) //set defau
 Error_t RCC_ErrorEnableInterrupt(RCC_Int_t RCC_Int_cpy)
 {
     PR_BAND(RCC->CIR,RCC_Int_cpy+RCC_IE_OFFSET) = (uint_32) ON;
+    return OK;
 }
 
 /**
@@ -333,6 +342,7 @@ Error_t RCC_ErrorEnableInterrupt(RCC_Int_t RCC_Int_cpy)
 Error_t RCC_ErrorDisableInterrupt(RCC_Int_t RCC_Int_cpy)
 {
     PR_BAND(RCC->CIR,RCC_Int_cpy+RCC_IE_OFFSET) = (uint_32) OFF;
+    return OK;
 }
 
 /**
@@ -344,6 +354,7 @@ Error_t RCC_ErrorDisableInterrupt(RCC_Int_t RCC_Int_cpy)
 Error_t RCC_ErrorClearFlag(RCC_Int_t RCC_Int_cpy)
 {
     PR_BAND(RCC->CIR,RCC_Int_cpy+RCC_IC_OFFSET) = (uint_32) ON;
+    return OK;
 }
 
 /**
@@ -368,4 +379,5 @@ Error_t RCC_ErrorSetClockOut(RCC_CLKOUT_t RCC_CLKOUT_cpy)
 {
     MASK_WORD(RCC->CFGR,MCO_MASK,MCO_3);
     SET_MASKED(RCC->CFGR,(RCC_CLKOUT_cpy^MCO_CHECK),MCO_3);
+    return OK;
 }

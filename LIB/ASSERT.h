@@ -8,7 +8,8 @@
 
 #define ERRORCODE NOK
 
-#define assert_param(expr) ((expr)?  (Error_t)OK : While(1))
+int Error_ASSERT_HOOK(void);
+#define assert_param(expr) ((expr)?  (Error_t)OK : Error_ASSERT_HOOK())
 
 
 #endif /* ASSERT_H_ */

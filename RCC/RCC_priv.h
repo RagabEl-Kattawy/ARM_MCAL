@@ -13,9 +13,10 @@
 #define RCC_PRIV_H_
 
 /************************ Includes **************************/
-#include "../LIB/STD_types.h"
-#include "../LIB/BIT_math.h"
-#include "../LIB/ASSERT.h"
+
+#include "lib/BIT_math.h"
+#include "lib/ASSERT.h"
+#include "lib/STD_types.h"
 
 /************************ Defines ***************************/
 #define RCC_BASEADDRESS 	    0x40021000

@@ -36,11 +36,11 @@ typedef enum
 }Error_t;
 
 typedef enum{
-    DISABLE = 0,
-    ENABLE  = 1,
+//    DISABLE = 0,
+//    ENABLE  = 1,
     ON      = 1,
     OFF     = 0
-}Status_t
+}Status_t;
 
 
 #endif /* STD_TYPES_H_ */

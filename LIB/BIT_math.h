@@ -12,8 +12,8 @@
 #define TOGGLE_BIT(word,pos)    ((uint_32)(word) ^= (1<<(pos)))
 #define GET_BIT(word,pos)       ((uint_32)(word&(1<<pos))>>pos)
 
-#define MASK_WORD(word,mask,pos)    (((uint_32)(word)) &= (((uint_32)~(mask))<<(pos)))
-#define SET_MASKED(word,value,pos)  (((uint_32)(word)) |= ((uint_32)(value)<<(pos)))
+#define MASK_WORD(word,mask,pos)    ((word) &= (((uint_32)~(mask))<<(pos)))
+#define SET_MASKED(word,value,pos)  ((word) |= ((uint_32)(value)<<(pos)))
 
 #define SET_BYTE(byte)          (byte |= (0xFF))
 #define CLEAR_BYTE(byte)        (byte &= (0x00))
