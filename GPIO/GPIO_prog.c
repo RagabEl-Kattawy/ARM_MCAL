@@ -92,11 +92,13 @@ Error_t GPIO_ErrorDrivePin(GPIO_Pin_t PinIdx_cpy, GPIO_PinData_t PinOutValue_cpy
     {
     /* Drive the pin */
     case GPIO_HIGH:
-        PR_BAND(GPIO_PortArr[PortIdx]->BSRR, PinPos) = (uint_32)GPIO_HIGH;
+        /* Writing zero on BSRR has no effect & BSRR is write only register */
+        GPIO_PortArr[PortIdx]->BSRR = (1 << PinPos);
         break;
     /* Drive the pin */
     case GPIO_LOW:
-        PR_BAND(GPIO_PortArr[PortIdx]->BRR, PinPos) = (uint_32)GPIO_HIGH;
+        /* Writing zero on BRR has no effect & BRR is write only register */
+        GPIO_PortArr[PortIdx]->BRR = (1 << PinPos);
         break;
 
     default:
