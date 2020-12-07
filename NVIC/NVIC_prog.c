@@ -20,7 +20,16 @@
  */
 Error_t NVIC_ErrorSetEnable(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
 {
+    /* Decode input */
+    uint_8 Reg_Idx = Perpheral_Reg(PeripheralIdx_cpy);
+    uint_8 Bit_Idx = Prepheral_Bit(PeripheralIdx_cpy);
+    /* assert input */
+    assert_param(IS_VALID_IDX(PeripheralIdx_cpy));
 
+    /* set bit. ISER is Read Set (rs) register, writing 0 has no effect */
+    NVIC->ISER[Reg_Idx] = 1 << Bit_Idx;
+
+    return OK;
 }
 
 /**
@@ -31,7 +40,16 @@ Error_t NVIC_ErrorSetEnable(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
  */
 Error_t NVIC_ErrorClearEnable(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
 {
+    /* Decode input */
+    uint_8 Reg_Idx = Perpheral_Reg(PeripheralIdx_cpy);
+    uint_8 Bit_Idx = Prepheral_Bit(PeripheralIdx_cpy);
+    /* assert input */
+    assert_param(IS_VALID_IDX(PeripheralIdx_cpy));
 
+    /* set bit. ICER is Read Set (rs) register, writing 0 has no effect */
+    NVIC->ICER[Reg_Idx] = 1 << Bit_Idx;
+
+    return OK;
 }
 
 /**
@@ -42,7 +60,14 @@ Error_t NVIC_ErrorClearEnable(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
  */
 uint_8 NVIC_uint_8GetEnableStatus(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
 {
+    /* Decode input */
+    uint_8 Reg_Idx = Perpheral_Reg(PeripheralIdx_cpy);
+    uint_8 Bit_Idx = Prepheral_Bit(PeripheralIdx_cpy);
+    /* assert input */
+    assert_param(IS_VALID_IDX(PeripheralIdx_cpy));
 
+    /* return the corresponding bit in ISER */
+    return (uint_8)(NVIC->ISER[Reg_Idx],Bit_Idx);
 }
 
 /**
@@ -53,7 +78,16 @@ uint_8 NVIC_uint_8GetEnableStatus(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
  */
 Error_t NVIC_ErrorSetPending(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
 {
+    /* Decode input */
+    uint_8 Reg_Idx = Perpheral_Reg(PeripheralIdx_cpy);
+    uint_8 Bit_Idx = Prepheral_Bit(PeripheralIdx_cpy);
+    /* assert input */
+    assert_param(IS_VALID_IDX(PeripheralIdx_cpy));
 
+    /* set bit. ISPR is Read Set (rs) register, writing 0 has no effect */
+    NVIC->ISPR[Reg_Idx] = 1 << Bit_Idx;
+
+    return OK;
 }
 
 /**
@@ -64,7 +98,16 @@ Error_t NVIC_ErrorSetPending(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
  */
 Error_t NVIC_ErrorClearPending(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
 {
+    /* Decode input */
+    uint_8 Reg_Idx = Perpheral_Reg(PeripheralIdx_cpy);
+    uint_8 Bit_Idx = Prepheral_Bit(PeripheralIdx_cpy);
+    /* assert input */
+    assert_param(IS_VALID_IDX(PeripheralIdx_cpy));
 
+    /* set bit. ICPR is Read Set (rs) register, writing 0 has no effect */
+    NVIC->ICPR[Reg_Idx] = 1 << Bit_Idx;
+
+    return OK;
 }
 
 /**
@@ -75,7 +118,14 @@ Error_t NVIC_ErrorClearPending(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
  */
 uint_8 NVIC_uint_8GetPendingStatus(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
 {
+    /* Decode input */
+    uint_8 Reg_Idx = Perpheral_Reg(PeripheralIdx_cpy);
+    uint_8 Bit_Idx = Prepheral_Bit(PeripheralIdx_cpy);
+    /* assert input */
+    assert_param(IS_VALID_IDX(PeripheralIdx_cpy));
 
+    /* return the corresponding bit in ISPR */
+    return (uint_8)(NVIC->ISPR[Reg_Idx], Bit_Idx);
 }
 
 /**
@@ -86,7 +136,14 @@ uint_8 NVIC_uint_8GetPendingStatus(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
  */
 uint_8 NVIC_uint_8GetActiveStatus(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
 {
+    /* Decode input */
+    uint_8 Reg_Idx = Perpheral_Reg(PeripheralIdx_cpy);
+    uint_8 Bit_Idx = Prepheral_Bit(PeripheralIdx_cpy);
+    /* assert input */
+    assert_param(IS_VALID_IDX(PeripheralIdx_cpy));
 
+    /* return the corresponding bit in IAPR */
+    return (uint_8)(NVIC->IABR[Reg_Idx], Bit_Idx);
 }
 
 /**
@@ -97,7 +154,13 @@ uint_8 NVIC_uint_8GetActiveStatus(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
  */
 Error_t NVIC_ErrorTriggerSoftwareInterrupt(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
 {
+    /* assert input */
+    assert_param(IS_VALID_IDX(PeripheralIdx_cpy));
 
+    /* set bit. ICPR is Read Set (rs) register, writing 0 has no effect */
+    NVIC->STIR = PeripheralIdx_cpy;
+
+    return OK;
 }
 
 /**
@@ -113,7 +176,13 @@ Error_t NVIC_ErrorTriggerSoftwareInterrupt(NVIC_PeripheralIdx_t PeripheralIdx_cp
  */
 Error_t NVIC_ErrorSetPriority(NVIC_PeripheralIdx_t PeripheralIdx_cpy, uint_8 Prio_cpy)
 {
+    /* assert input */
+    assert_param(IS_VALID_IDX(PeripheralIdx_cpy));
+    assert_param(IS_VALID_PRIO(Prio_cpy));
 
+    NVIC->IPR[PeripheralIdx_cpy] = Prio_cpy;
+
+    return OK;
 }
 
 /**
@@ -124,5 +193,7 @@ Error_t NVIC_ErrorSetPriority(NVIC_PeripheralIdx_t PeripheralIdx_cpy, uint_8 Pri
  */
 uint_8 NVIC_uint_8GetPriority(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
 {
-
+    /* assert input */
+    assert_param(IS_VALID_IDX(PeripheralIdx_cpy));
+    return NVIC->IPR[PeripheralIdx_cpy];
 }
