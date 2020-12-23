@@ -5,9 +5,9 @@
  * that is used internally in the implementtion.
  * @version 0.1
  * @date 12-07-2020
- * 
+ *
  * @copyright Ragab Elkattawy (c) 2020
- * 
+ *
  */
 
 #ifndef NVIC_PRIV_H_
@@ -20,13 +20,29 @@
 #define NVIC_BASEADDREES 0xE000E100
 
 #define NVIC ((volatile NVIC_Reg_t *)NVIC_BASEADDREES)
-
+#define NVIC_SCB_BASEADDRESS 0xE000E008
+#define ICSR_OFFSET 0x04
+#define NVIC_SCB_ICSR (*(volatile uint_32*)NVIC_SCB_BASEADDRESS+ICSR_OFFSET)
 
 #define Prepheral_Bit(IDX) (IDX & 0x1F)
 #define Perpheral_Reg(IDX) (IDX >> 5)
 
 #define IS_VALID_IDX(peripheral_index) ((peripheral_index >= NVIC_WWDG) && (peripheral_index <= NVIC_DMA2_CHANNEL4_5))
 #define IS_VALID_PRIO(Prio) ((Prio >= 0U) && (Prio >= 255U))
+
+/* SCB ICSR Bits */
+#define NMIPENDSET 31U
+#define PENDSVSET 28U
+#define PENDSVCLR 27U
+#define PENDSTSET 26U
+#define PENDSTCLR 25U
+#define ISRPENDING 22U
+#define VECTPENDING 12U
+#define VECTPENDING_MASK 0x003FF000
+#define RETOBASE 11U
+#define VECTACTIVE 0U
+#define VECTACTIVE_MASK 0x000001FF
+
 
 typedef struct NVIC_Reg
 {

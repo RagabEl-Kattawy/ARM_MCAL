@@ -1,12 +1,12 @@
 /**
  * @file NVIC_int.h
  * @author Ragab R. Elkattawy (r.elkattawy@gmail.com)
- * @brief The interface file (should be included in any file using NVIC APIs) 
+ * @brief The interface file (should be included in any file using NVIC APIs)
  * @version 0.1
  * @date 12-07-2020
- * 
+ *
  * @copyright Ragab Elkattawy (c) 2020
- * 
+ *
  */
 #ifndef NVIC_INT_H_
 #define NVIC_INT_H_
@@ -81,7 +81,7 @@ typedef enum NVIC_PeripheralIdx
 
 /**
  * @brief This function sets the enable bit of a peripheral IRQ (unmasking)
- * 
+ *
  * @param PeripheralIdx_cpy : Peripheral index from NVIC_PeripheralIdx_t enum
  * @return Error_t : Indecates if an error happend during configuration
  */
@@ -89,7 +89,7 @@ Error_t NVIC_ErrorSetEnable(NVIC_PeripheralIdx_t PeripheralIdx_cpy);
 
 /**
  * @brief This function clears the enable bit of a peripheral IRQ (masking)
- * 
+ *
  * @param PeripheralIdx_cpy : Peripheral index from NVIC_PeripheralIdx_t enum
  * @return Error_t : Indecates if an error happend during configuration
  */
@@ -97,7 +97,7 @@ Error_t NVIC_ErrorClearEnable(NVIC_PeripheralIdx_t PeripheralIdx_cpy);
 
 /**
  * @brief This function gets the value of the enable bit of a peripheral IRQ
- * 
+ *
  * @param PeripheralIdx_cpy : Peripheral index from NVIC_PeripheralIdx_t enum
  * @return uint_8 : Enable bit value
  */
@@ -105,7 +105,7 @@ uint_8 NVIC_uint_8GetEnableStatus(NVIC_PeripheralIdx_t PeripheralIdx_cpy);
 
 /**
  * @brief This Function sets the pendeing flag of a peripheral IRQ
- * 
+ *
  * @param PeripheralIdx_cpy : Peripheral index from NVIC_PeripheralIdx_t enum
  * @return Error_t : Indecates if an error happend during configuration
  */
@@ -113,7 +113,7 @@ Error_t NVIC_ErrorSetPending(NVIC_PeripheralIdx_t PeripheralIdx_cpy);
 
 /**
  * @brief This Function clears the pendeing flag of a peripheral IRQ
- * 
+ *
  * @param PeripheralIdx_cpy : Peripheral index from NVIC_PeripheralIdx_t enum
  * @return Error_t : Indecates if an error happend during configuration
  */
@@ -121,7 +121,7 @@ Error_t NVIC_ErrorClearPending(NVIC_PeripheralIdx_t PeripheralIdx_cpy);
 
 /**
  * @brief This function returns the penging flag status of a peripheral IRQ
- * 
+ *
  * @param PeripheralIdx_cpy : Peripheral index from NVIC_PeripheralIdx_t enum
  * @return uint_8 : Pending flag status
  */
@@ -129,7 +129,7 @@ uint_8 NVIC_uint_8GetPendingStatus(NVIC_PeripheralIdx_t PeripheralIdx_cpy);
 
 /**
  * @brief This function returns the active flag status of a peripheral ISR
- * 
+ *
  * @param PeripheralIdx_cpy : Peripheral index from NVIC_PeripheralIdx_t enum
  * @return uint_8 : Active flag status
  */
@@ -137,7 +137,7 @@ uint_8 NVIC_uint_8GetActiveStatus(NVIC_PeripheralIdx_t PeripheralIdx_cpy);
 
 /**
  * @brief This function triggers the IRQ of a aperipheral by Software (Simulates an IRQ)
- * 
+ *
  * @param PeripheralIdx_cpy : Peripheral index from NVIC_PeripheralIdx_t enum
  * @return Error_t : Indecates if an error happend during configuration
  */
@@ -145,23 +145,109 @@ Error_t NVIC_ErrorTriggerSoftwareInterrupt(NVIC_PeripheralIdx_t PeripheralIdx_cp
 
 /**
  * @brief This function sets the priority of a peripheral IRQ
- * 
+ *
  * @param PeripheralIdx_cpy : Peripheral index from NVIC_PeripheralIdx_t enum
- * @param Prio_cpy : priority value (8-bit value) 
+ * @param Prio_cpy : priority value (8-bit value)
  *                   Range:[0x00(000), 0x10(016), 0x20(032), 0x30(048), 0x40(064), 0x50(080),
  *                          0x60(096), 0x70(112), 0x80(128), 0x90(144), 0xA0(160), 0xB0(176),
  *                          0xC0(192), 0xD0(208), 0xE0(224), 0xF0(240)]
- *                          any level in between will be floored.        
+ *                          any level in between will be floored.
  * @return Error_t : Indecates if an error happend during configuration
  */
 Error_t NVIC_ErrorSetPriority(NVIC_PeripheralIdx_t PeripheralIdx_cpy, uint_8 Prio_cpy);
 
 /**
  * @brief This function returns the priority level of an IRQ
- * 
+ *
  * @param PeripheralIdx_cpy : Peripheral index from NVIC_PeripheralIdx_t enum
  * @return uint_8 : Priority Level
  */
 uint_8 NVIC_uint_8GetPriority(NVIC_PeripheralIdx_t PeripheralIdx_cpy);
+
+/* SCB NVIC-Related APIs */
+
+/**
+ * @brief This function sets the NMI pending flag (it will execute immediately).
+ *
+ * @return Error_t Indecates if an error happend during configuration
+ */
+Error_t NVIC_ErrorSetNMIPending(void);
+
+/**
+ * @brief This function sets the PendSV pening flag.
+ * 
+ * @return Error_t Indecates if an error happend during configuration.
+ */
+Error_t NVIC_ErrorSetPendSVPending(void);
+
+/**
+ * @brief This function gets the pending flag status of the PendSV.
+ * 
+ * @return uint_8 
+ */
+uint_8 NVIC_uint_8GetPendSVPendingState(void);
+
+/**
+ * @brief This function clears the PendSV pending flag.
+ * 
+ * @return Error_t Indecates if an error happend during configuration.
+ */
+Error_t NVIC_ErrorClearPendSVPending(void);
+
+/**
+ * @brief This functions sets the SysTick timer pending flag
+ * 
+ * @return Error_t Indecates if an error happend during configuration.
+ */
+Error_t NVIC_ErrorSetSysTickPending(void);
+
+/**
+ * @brief This function gets the SysTick pending flag status.
+ * 
+ * @return uint_8 The sysTick pending flag status
+ */
+uint_8 NVIC_uint_8GetSysTickPendingState(void);
+
+/**
+ * @brief This function clears the SysTick pending flag
+ * 
+ * @return Error_t Indecates if an error happend during configuration.
+ */
+Error_t NVIC_ErrorClearSysTickPending(void);
+
+/**
+ * @brief This function checks if there is any pending ISR.
+ * 
+ * @return uint_8 Pending ISR Status 0: No pending ISR 1: An ISR is pending
+ */
+uint_8 NVIC_uint_8GetPendingISRStatus(void);
+
+/**
+ * @brief This function gets the exception number of the highest priority pending enabled exception.
+ *        The value indicated by this field includes the effect of the BASEPRI and FAULTMASK
+ *        registers, but not any effect of the PRIMASK register.
+ * 
+ * @return uint_16 The exception number of the highest priority pending enabled exception.
+ */
+uint_16 NVIC_uint_16GetPendingVector(void);
+
+/**
+ * @brief This function checks whether there are preempted active exceptions:
+ * 
+ * @return uint_8 Preemption status 0: There are preempted active exceptions to execute
+ *                                  1: There are no active exceptions, or 
+ *                                     the currently-executing exception is the
+ *                                     only activeexception.
+ */
+uint_8 NVIC_uint_8GetPreemptedExceptionStatus(void);
+
+/**
+ * @brief This function gets the currently active exception number.
+ * Subtract 16 from this value to obtain the IRQ number required to index into the
+ * Interrupt Clear-Enable, Set-Enable, Clear-Pending, Set-Pending, or Priority Registers,
+ * @return uint_16 The index of currently active exception.
+ */
+uint_16 NVIC_uint_16GetActiveException(void);
+
 
 #endif /* NVIC_INT_H_ */

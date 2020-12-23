@@ -197,3 +197,137 @@ uint_8 NVIC_uint_8GetPriority(NVIC_PeripheralIdx_t PeripheralIdx_cpy)
     assert_param(IS_VALID_IDX(PeripheralIdx_cpy));
     return NVIC->IPR[PeripheralIdx_cpy];
 }
+
+/* SCB NVIC-Related APIs */
+
+/**
+ * @brief This function sets the NMI pending flag (it will execute immediately).
+ *
+ * @return Error_t Indecates if an error happend during configuration
+ */
+Error_t NVIC_ErrorSetNMIPending(void)
+{
+    /* set NMIPENDSET */
+    SET_BIT(NVIC_SCB_ICSR,NMIPENDSET);
+    return GET_BIT(NVIC_SCB_ICSR,NMIPENDSET)? NOK : OK;
+}
+
+/**
+ * @brief This function sets the PendSV pening flag.
+ * 
+ * @return Error_t Indecates if an error happend during configuration.
+ */
+Error_t NVIC_ErrorSetPendSVPending(void)
+{
+    /* set PENDSVSET */
+    SET_BIT(NVIC_SCB_ICSR,PENDSVSET);
+    return OK;
+}
+
+/**
+ * @brief This function gets the pending flag status of the PendSV.
+ * 
+ * @return uint_8 
+ */
+uint_8 NVIC_uint_8GetPendSVPendingState(void)
+{
+    /* Return PENDSVSET */
+    return (uint_8)GET_BIT(NVIC_SCB_ICSR,PENDSVSET);
+}
+
+/**
+ * @brief This function clears the PendSV pending flag.
+ * 
+ * @return Error_t Indecates if an error happend during configuration.
+ */
+Error_t NVIC_ErrorClearPendSVPending(void)
+{
+    /* set PENDSVCLR: */
+    SET_BIT(NVIC_SCB_ICSR,PENDSVCLR);
+    return GET_BIT(NVIC_SCB_ICSR,PENDSVCLR)? NOK : OK;
+}
+
+/**
+ * @brief This functions sets the SysTick timer pending flag
+ * 
+ * @return Error_t Indecates if an error happend during configuration.
+ */
+Error_t NVIC_ErrorSetSysTickPending(void)
+{
+    /* set PENDSTSET */
+    SET_BIT(NVIC_SCB_ICSR,PENDSTSET);
+    return OK;
+}
+
+/**
+ * @brief This function gets the SysTick pending flag status.
+ * 
+ * @return uint_8 The sysTick pending flag status
+ */
+uint_8 NVIC_uint_8GetSysTickPendingState(void)
+{
+    /* Get PENDSTSET: */
+    return (uint_8)GET_BIT(NVIC_SCB_ICSR,PENDSTSET);
+}
+
+/**
+ * @brief This function clears the SysTick pending flag
+ * 
+ * @return Error_t Indecates if an error happend during configuration.
+ */
+Error_t NVIC_ErrorClearSysTickPending(void)
+{    
+    /* set PENDSTCLR: */
+    SET_BIT(NVIC_SCB_ICSR,PENDSTCLR);
+    return GET_BIT(NVIC_SCB_ICSR,PENDSTCLR)? NOK : OK;   
+}
+
+/**
+ * @brief This function checks if there is any pending ISR.
+ * 
+ * @return uint_8 Pending ISR Status 0: No pending ISR 1: An ISR is pending
+ */
+uint_8 NVIC_uint_8GetPendingISRStatus(void)
+{
+    /* retrun ISRPENDING */
+    return (uint_8)GET_BIT(NVIC_SCB_ICSR,ISRPENDING);
+}
+
+/**
+ * @brief This function gets the exception number of the highest priority pending enabled exception.
+ *        The value indicated by this field includes the effect of the BASEPRI and FAULTMASK
+ *        registers, but not any effect of the PRIMASK register.
+ * 
+ * @return uint_16 The exception number of the highest priority pending enabled exception.
+ */
+uint_16 NVIC_uint_16GetPendingVector(void)
+{
+    /* return VECTPENDING [10 bits] */
+    return (uint_16) ((NVIC_SCB_ICSR & VECTPENDING_MASK) >> VECTPENDING);
+}
+
+/**
+ * @brief This function checks whether there are preempted active exceptions:
+ * 
+ * @return uint_8 Preemption status 0: There are preempted active exceptions to execute
+ *                                  1: There are no active exceptions, or 
+ *                                     the currently-executing exception is the
+ *                                     only activeexception.
+ */
+uint_8 NVIC_uint_8GetPreemptedExceptionStatus(void)
+{
+    /* Return RETOBASE */
+    return (uint_8) GET_BIT(NVIC_SCB_ICSR, RETOBASE);
+}
+
+/**
+ * @brief This function gets the currently active exception number.
+ * Subtract 16 from this value to obtain the IRQ number required to index into the
+ * Interrupt Clear-Enable, Set-Enable, Clear-Pending, Set-Pending, or Priority Registers,
+ * @return uint_16 The index of currently active exception.
+ */
+uint_16 NVIC_uint_16GetActiveException(void)
+{
+    /* return VECTACTIVE [9 bits] */
+    return (uint_16) ((NVIC_SCB_ICSR & VECTACTIVE_MASK) >> VECTACTIVE);
+}
